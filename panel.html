@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="panel.css" />
+  </head>
+  <body>
+    <div class="app">
+      <!-- Coluna esquerda: lista de requisicoes capturadas -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <span class="sidebar-title">Requisicoes</span>
+          <button id="clearBtn" class="btn btn-ghost" title="Limpar lista">Limpar</button>
+        </div>
+        <input
+          id="filterInput"
+          class="filter"
+          type="text"
+          placeholder="Filtrar por URL ou metodo..."
+        />
+        <ul id="requestList" class="request-list"></ul>
+        <div id="emptyState" class="empty-state">
+          Navegue na aba para capturar requisicoes.
+        </div>
+      </aside>
+
+      <!-- Coluna direita: editor + resposta -->
+      <main class="editor">
+        <div class="editor-empty" id="editorEmpty">
+          Selecione uma requisicao a esquerda para editar e reenviar.
+        </div>
+
+        <div class="editor-content" id="editorContent" hidden>
+          <!-- Linha metodo + URL -->
+          <div class="row url-row">
+            <select id="methodSelect" class="method-select">
+              <option>GET</option>
+              <option>POST</option>
+              <option>PUT</option>
+              <option>PATCH</option>
+              <option>DELETE</option>
+              <option>HEAD</option>
+              <option>OPTIONS</option>
+            </select>
+            <input id="urlInput" class="url-input" type="text" placeholder="https://..." />
+            <button id="sendBtn" class="btn btn-primary">Reenviar</button>
+          </div>
+
+          <!-- Abas -->
+          <div class="tabs">
+            <button class="tab active" data-tab="headers">Headers</button>
+            <button class="tab" data-tab="body">Body</button>
+            <button class="tab" data-tab="response">Resposta</button>
+          </div>
+
+          <!-- Aba Headers -->
+          <section class="tab-panel active" data-panel="headers">
+            <div class="headers-toolbar">
+              <span class="hint">Headers restritos (Host, Origin, etc.) sao ignorados pelo navegador.</span>
+              <button id="addHeaderBtn" class="btn btn-ghost">+ Header</button>
+            </div>
+            <div id="headersEditor" class="headers-editor"></div>
+          </section>
+
+          <!-- Aba Body -->
+          <section class="tab-panel" data-panel="body" hidden>
+            <textarea
+              id="bodyInput"
+              class="body-input"
+              placeholder="Corpo da requisicao (JSON, texto, etc.)"
+              spellcheck="false"
+            ></textarea>
+          </section>
+
+          <!-- Aba Resposta -->
+          <section class="tab-panel" data-panel="response" hidden>
+            <div id="responseMeta" class="response-meta"></div>
+            <pre id="responseBody" class="response-body"></pre>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <script src="panel.js"></script>
+  </body>
+</html>

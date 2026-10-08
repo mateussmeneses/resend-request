@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "Resend Request",
+  "version": "1.0.0",
+  "description": "Captura requisicoes no DevTools, permite editar metodo, URL, headers e body, e reenvia a versao modificada (estilo Edit & Resend do Firefox).",
+  "devtools_page": "devtools.html",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
